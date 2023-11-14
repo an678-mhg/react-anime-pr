@@ -69,30 +69,20 @@ const BrowseFilter: React.FC<BrowseFilterProps> = ({
     }),
   };
 
-  const handleOnChangeCategory = (
+  const handleOnChange = (
     newValue: MultiValue<{
       value: number;
       label: string;
-    }>
+    }>,
+    name: "categories" | "countries"
   ) => {
     // @ts-ignore
-    setValue((prev) => ({
-      ...prev,
-      categories: [...newValue],
-    }));
-  };
-
-  const handleOnChangeCountry = (
-    newValue: MultiValue<{
-      value: number;
-      label: string;
-    }>
-  ) => {
-    // @ts-ignore
-    setValue((prev) => ({
-      ...prev,
-      countries: [...newValue],
-    }));
+    setValue((prev) => {
+      return {
+        ...prev,
+        [name]: [...newValue],
+      };
+    });
   };
 
   useEffect(() => {
@@ -109,7 +99,7 @@ const BrowseFilter: React.FC<BrowseFilterProps> = ({
         (item) => item.value
       )}&countries=${value?.countries?.map((item) => item.value)}`
     );
-  }, [value?.categories, value?.countries, router, categories]);
+  }, [value?.categories, value?.countries]);
 
   useEffect(() => {
     if (searchParams?.get("categories")) {
@@ -143,7 +133,7 @@ const BrowseFilter: React.FC<BrowseFilterProps> = ({
         countries: countriesSearchParams,
       }));
     }
-  }, [categories, countries, searchParams]);
+  }, []);
 
   const {
     data,
@@ -184,7 +174,7 @@ const BrowseFilter: React.FC<BrowseFilterProps> = ({
           placeholder="Select Genres"
           isMulti
           // @ts-ignore
-          onChange={handleOnChangeCategory}
+          onChange={(newValue) => handleOnChange(newValue, "categories")}
           value={value?.categories}
         />
         <Select
@@ -197,7 +187,7 @@ const BrowseFilter: React.FC<BrowseFilterProps> = ({
           placeholder="Select Countries"
           isMulti
           // @ts-ignore
-          onChange={handleOnChangeCountry}
+          onChange={(newValue) => handleOnChange(newValue, "countries")}
           value={value?.countries}
         />
       </div>
