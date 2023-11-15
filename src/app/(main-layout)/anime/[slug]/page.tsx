@@ -5,7 +5,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
-import { BsBookmark } from "react-icons/bs";
 import AnimeInfo from "@/components/Anime/AnimeInfo";
 import EpisodeList from "@/components/Anime/Episodes";
 
