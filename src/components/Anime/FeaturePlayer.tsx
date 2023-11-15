@@ -32,7 +32,7 @@ const FeaturePlayer: React.FC<FeaturePlayerProps> = ({ episodes }) => {
         <div
           onClick={handlePrev}
           className={`flex items-center space-x-2 cursor-pointer ${
-            index < 0 ? "text-white" : "text-gray-600 cursor-not-allowed"
+            index > 0 ? "text-white" : "text-gray-600 cursor-not-allowed"
           }`}
         >
           <FcPrevious className="text-[20px]" />
