@@ -17,6 +17,19 @@ interface PageContext {
   };
 }
 
+// export async function generateMetadata({ params }: PageContext): Promise<Metadata> {
+
+//   const slug = params?.slug
+//   const anime = await getAnimeBySlug(params?.slug);
+
+//   return useMetadata({
+//     description: anime?.data?.info?.description!,
+//     title: anime?.data?.info?.title!,
+//     urlPath: `/anime/`
+
+//   })
+// }
+
 const WatchAnime: NextPage<PageContext> = async ({ params }) => {
   if (!params?.slug) {
     return notFound();

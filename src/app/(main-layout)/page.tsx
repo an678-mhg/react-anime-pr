@@ -1,8 +1,12 @@
 import AnimeSlide from "@/components/Anime/AnimeSlide";
 import { getHomeData } from "@/services/anime";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import { notFound } from "next/navigation";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Home Page | React Anime",
+};
 
 const HomePage: NextPage = async () => {
   const data = await getHomeData();

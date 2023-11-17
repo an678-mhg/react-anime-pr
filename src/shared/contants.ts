@@ -46,3 +46,5 @@ export const playSpeedOptions = [
     value: 2,
   },
 ];
+
+export const domain = process.env.NEXT_PUBLIC_BASE_URL as string;
