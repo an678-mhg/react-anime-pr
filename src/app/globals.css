@@ -58,3 +58,8 @@
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
+
+#nprogress .bar {
+  background: #ff0000 !important;
+  height: 3px !important;
+}

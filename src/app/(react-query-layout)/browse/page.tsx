@@ -2,6 +2,11 @@ import BrowseFilter from "@/components/Shared/BrowseFilter";
 import { getMetadata } from "@/services/anime";
 import { notFound } from "next/navigation";
 import React from "react";
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Browse Page | React Anime",
+};
 
 const Browse = async () => {
   const data = await getMetadata();

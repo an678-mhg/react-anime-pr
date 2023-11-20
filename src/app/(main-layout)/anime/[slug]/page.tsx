@@ -1,5 +1,5 @@
 import { getAnimeBySlug } from "@/services/anime";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,11 +7,26 @@ import React from "react";
 import { FaPlay } from "react-icons/fa";
 import AnimeInfo from "@/components/Anime/AnimeInfo";
 import EpisodeList from "@/components/Anime/Episodes";
+import { useMetadata } from "@/hooks/useMetadata";
 
 interface PageContext {
   params: {
     slug: string;
   };
+}
+
+export async function generateMetadata({
+  params,
+}: PageContext): Promise<Metadata> {
+  const slug = params?.slug;
+  const anime = await getAnimeBySlug(params?.slug);
+
+  return useMetadata({
+    description: anime?.data?.info?.description!,
+    title: anime?.data?.info?.title!,
+    urlPath: `/anime/${slug}`,
+    image: anime?.data?.info?.image_url,
+  });
 }
 
 const AnimeSlug: NextPage<PageContext> = async ({ params }) => {
@@ -93,7 +108,7 @@ const AnimeSlug: NextPage<PageContext> = async ({ params }) => {
             />
           </div>
 
-          <div className="flex-1 md:mt-0 mt-10">
+          <div className="flex-1 md:mt-0 mt-10 w-full">
             <div className="space-x-4 flex items-center">
               <Link
                 href={`/anime/watch/${slug}/${episodes_iframe_url?.[0]?.id}/iframe`}

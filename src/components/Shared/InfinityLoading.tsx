@@ -3,8 +3,8 @@ import { InView } from "react-intersection-observer";
 import { InfiniteData } from "react-query";
 import AnimeCard from "../Anime/AnimeCard";
 import { Anime } from "@/types/anime";
-import LoadingCircle from "./LoadingCircle";
 import { Pagination } from "@/types/utils";
+import Loading from "./Loading";
 
 interface InfinityLoadingProps {
   isLoading: boolean;
@@ -28,7 +28,7 @@ const InfinityLoading: React.FC<InfinityLoadingProps> = ({
 }) => {
   return (
     <div>
-      {isLoading && <LoadingCircle />}
+      {isLoading && <Loading />}
 
       {data?.pages?.length === 0 ||
         (data?.pages[0]?.data?.length === 0 && (
@@ -61,7 +61,7 @@ const InfinityLoading: React.FC<InfinityLoadingProps> = ({
             ref={ref}
             className="mt-8 flex w-full items-center justify-center"
           >
-            {isFetchingNextPage && <LoadingCircle />}
+            {isFetchingNextPage && <Loading />}
           </div>
         )}
       </InView>

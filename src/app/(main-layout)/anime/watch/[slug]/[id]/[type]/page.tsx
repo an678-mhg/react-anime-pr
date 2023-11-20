@@ -2,8 +2,9 @@ import AnimeInfo from "@/components/Anime/AnimeInfo";
 import EpisodeList from "@/components/Anime/Episodes";
 import FeaturePlayer from "@/components/Anime/FeaturePlayer";
 import Player from "@/components/Player";
+import { useMetadata } from "@/hooks/useMetadata";
 import { getAnimeBySlug } from "@/services/anime";
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -17,18 +18,19 @@ interface PageContext {
   };
 }
 
-// export async function generateMetadata({ params }: PageContext): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageContext): Promise<Metadata> {
+  const slug = params?.slug;
+  const anime = await getAnimeBySlug(params?.slug);
 
-//   const slug = params?.slug
-//   const anime = await getAnimeBySlug(params?.slug);
-
-//   return useMetadata({
-//     description: anime?.data?.info?.description!,
-//     title: anime?.data?.info?.title!,
-//     urlPath: `/anime/`
-
-//   })
-// }
+  return useMetadata({
+    description: anime?.data?.info?.description!,
+    title: anime?.data?.info?.title!,
+    urlPath: `/anime/watch/${slug}/${params?.id}/${params?.type}`,
+    image: anime?.data?.info?.image_url,
+  });
+}
 
 const WatchAnime: NextPage<PageContext> = async ({ params }) => {
   if (!params?.slug) {
