@@ -1,4 +1,4 @@
-import { client } from "@/shared/fetch";
+import client from "@/shared/fetch";
 import { Anime, AnimeDetails } from "@/types/anime";
 import {
   Category2,
@@ -11,7 +11,7 @@ import {
 export const getAnimeUpdatedAt = async () => {
   try {
     const response = await client.get<Promise<{ data: Anime[] }>>(
-      "api/anime/updated_at"
+      "anime/updated_at"
     );
     return response?.data;
   } catch (error) {
@@ -23,7 +23,7 @@ export const filterAnime = async (filter: FilterParams) => {
   try {
     const response = await client.post<
       Promise<{ data: Anime[]; pagination: Pagination }>
-    >("api/anime/filter", filter);
+    >("anime/filter", filter);
     return response.data;
   } catch (error) {
     return null;
@@ -76,7 +76,7 @@ export const getHomeData = async () => {
 export const getAnimeBySlug = async (slug: string) => {
   try {
     const response = await client.get<Promise<{ data: AnimeDetails }>>(
-      `api/anime/detail/${slug}`
+      `anime/detail/${slug}`
     );
     return response?.data;
   } catch (error) {
@@ -88,7 +88,7 @@ export const searchAnime = async ({ limit, page, q }: SearchAnimeParams) => {
   try {
     const response = await client.post<
       Promise<{ data: Anime[]; pagination: Pagination }>
-    >("api/anime/search", { q, limit, page });
+    >("anime/search", { q, limit, page });
     return response?.data;
   } catch (error) {
     return null;
@@ -99,7 +99,7 @@ export const getMetadata = async () => {
   try {
     const response = await client.get<
       Promise<{ data: { categories: Category2[]; countries: Country2[] } }>
-    >("api/anime/metadata");
+    >("anime/metadata");
     return response?.data;
   } catch (error) {
     return null;
