@@ -5,7 +5,7 @@ import "./style.css";
 import Link from "next/link";
 
 interface LogoProps {
-  className: string;
+  className?: string;
 }
 
 const Logo: React.FC<LogoProps> = ({ className }) => {

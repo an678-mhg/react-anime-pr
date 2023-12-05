@@ -2,6 +2,7 @@ import { Layout } from "@/types/utils";
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
 
+import 'vnetwork-player/dist/vnetwork-player.min.css'
 import "nprogress/nprogress.css";
 import "swiper/css";
 import "./globals.css";

@@ -101,7 +101,7 @@ const WatchAnime: NextPage<PageContext> = async ({ params }) => {
         <span>Home</span>
         <BsChevronRight className="text-white text-[15px]" />
         <Link href={`/anime/${slug}`}>
-          <span>{title}</span>
+          <span className="line-clamp-1">{title}</span>
         </Link>
       </div>
       <div className="mt-5 flex lg:flex-row flex-col lg:space-x-5">
@@ -110,32 +110,17 @@ const WatchAnime: NextPage<PageContext> = async ({ params }) => {
             {params?.type === "iframe" ? (
               <iframe
                 frameBorder="none"
-                src={`${
-                  episodes_iframe_url?.find(
-                    (item) => item?.id === Number(params?.id)
-                  )?.url
-                }`}
+                src={`${episodes_iframe_url?.find(
+                  (item) => item?.id === Number(params?.id)
+                )?.url
+                  }`}
                 className="w-full h-full"
                 allowFullScreen
               />
             ) : (
+              // <div className="w-full h-full" />
               <Player
-                className=""
-                color="#EF4444"
-                source={[
-                  {
-                    label: "Default",
-                    url: episodes_m3u8_url?.find(
-                      (item) => item?.id === Number(params?.id)
-                    )?.url!,
-                  },
-                ]}
-                key={
-                  episodes_m3u8_url?.find(
-                    (item) => item?.id === Number(params?.id)
-                  )?.url!
-                }
-                poster=""
+                src={episodes_m3u8_url?.find((item) => item?.id === Number(params?.id))?.url!}
               />
             )}
           </div>
@@ -156,17 +141,15 @@ const WatchAnime: NextPage<PageContext> = async ({ params }) => {
               <div className="rounded-md overflow-hidden">
                 <Link
                   href={`/anime/watch/${slug}/${episodes_m3u8_url?.[0]?.id}/m3u8`}
-                  className={`px-4 md:py-2 py-4 text-sm font-normal ${
-                    params?.type === "m3u8" ? "bg-red-500" : "bg-gray-700"
-                  }`}
+                  className={`px-4 md:py-2 py-4 text-sm font-normal ${params?.type === "m3u8" ? "bg-red-500" : "bg-gray-700"
+                    }`}
                 >
                   M3U8
                 </Link>
                 <Link
                   href={`/anime/watch/${slug}/${episodes_iframe_url?.[0]?.id}/iframe`}
-                  className={`px-4 py-2 text-sm font-normal ${
-                    params?.type === "iframe" ? "bg-red-500" : "bg-gray-700"
-                  }`}
+                  className={`px-4 py-2 text-sm font-normal ${params?.type === "iframe" ? "bg-red-500" : "bg-gray-700"
+                    }`}
                 >
                   Iframe
                 </Link>

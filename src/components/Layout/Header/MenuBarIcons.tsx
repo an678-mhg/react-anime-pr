@@ -9,7 +9,7 @@ const MenuBarIcons: React.FC<MenuBarIconsProps> = ({ isClose, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`menu ${isClose ? "" : "opened"} lg:hidden block`}
+      className={`menu ${isClose ? "" : "opened"} md:hidden block`}
       aria-label="Main Menu"
     >
       <svg width="40" height="40" viewBox="0 0 100 100">

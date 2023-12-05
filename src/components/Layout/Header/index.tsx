@@ -7,6 +7,7 @@ import { BsSearch } from "react-icons/bs";
 import Link from "next/link";
 import MenuBarIcons from "./MenuBarIcons";
 import { usePathname } from "next/navigation";
+import { IoIosLogIn } from "react-icons/io";
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -25,13 +26,22 @@ const Header = () => {
         />
 
         <div className="flex md:space-x-5 items-center">
-          <Logo className="text-[40px]" />
+          <Logo className="text-[40px] md:block hidden" />
           <Navbar show={showNav} />
         </div>
 
-        <Link href="/search">
-          <BsSearch className="text-[25px]" />
-        </Link>
+        <div className="flex items-center space-x-6">
+          <Link href="/search">
+            <BsSearch className="text-[25px]" />
+          </Link>
+          {/* <Link
+            href="/login"
+            className="text-white px-4 py-2 rounded-md bg-red-500 flex items-center"
+          >
+            <IoIosLogIn className="text-lg mr-2" />
+            <span>SignIn</span>
+          </Link> */}
+        </div>
       </div>
     </header>
   );

@@ -110,13 +110,13 @@ const AnimeSlug: NextPage<PageContext> = async ({ params }) => {
 
           <div className="flex-1 md:mt-0 mt-10 w-full">
             <div className="space-x-4 flex items-center">
-              <Link
-                href={`/anime/watch/${slug}/${episodes_iframe_url?.[0]?.id}/iframe`}
+              {episodes_m3u8_url?.length > 0 && <Link
+                href={`/anime/watch/${slug}/${episodes_m3u8_url?.[0]?.id}/m3u8`}
                 className="text-white px-4 py-2 rounded-md bg-red-500 flex items-center"
               >
                 <FaPlay className="text-lg mr-2" />
                 <span>Watch Now</span>
-              </Link>
+              </Link>}
               {/* <button className="text-red-500 px-4 py-2 rounded-md border border-red-500 flex items-center">
                 <BsBookmark className="text-lg mr-2" />
                 <span>Bookmark</span>
@@ -144,7 +144,7 @@ const AnimeSlug: NextPage<PageContext> = async ({ params }) => {
           <AnimeInfo dataInfo={dataInfo} />
           <EpisodeList
             slug={slug}
-            episodes={episodes_iframe_url || episodes_m3u8_url}
+            episodes={episodes_m3u8_url || episodes_iframe_url}
           />
         </div>
       </div>
